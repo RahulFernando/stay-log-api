@@ -4,6 +4,7 @@ import logger from 'koa-logger';
 import { connectDB } from './config/database.js';
 import bodyParser from 'koa-bodyparser';
 import userRoutes from './api/user.routes.js';
+import { startReminderService } from './services/notifyUsers.service.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -18,6 +19,9 @@ await connectDB();
 
 // Register Routes
 app.use(userRoutes.routes()).use(userRoutes.allowedMethods());
+
+// Start the Reminder Service
+startReminderService();
 
 const PORT = process.env.PORT || 4000;
 
