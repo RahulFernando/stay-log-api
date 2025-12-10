@@ -9,7 +9,7 @@ import { getReminderDate } from '../utils/getReminder.js';
 import { sendMessage } from './messaging.service.js';
 
 export const startReminderService = () => {
-  cron.schedule('*/5 * * * *', async () => {
+  cron.schedule('0 0 * * *', async () => {
     console.log('🔔 Running reminder job...');
     const users = await getAllUsers();
     const activeUsers = users.filter(user => user.isActive);
